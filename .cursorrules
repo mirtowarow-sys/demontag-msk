@@ -1,0 +1,99 @@
+# ==============================
+# PROJECT CONTEXT
+# ==============================
+# Заполни перед стартом каждого проекта:
+#
+# Проект: [Демонтаж МСК]
+# Клиент: [бизнес]
+# Цель сайта: [лиды / продажи / имидж]
+# Дедлайн: [дата]
+# Дизайн-референс: [https://demontazh-servis.ru]
+# ==============================
+
+## Stack
+- Framework: Next.js 15, App Router, React 19
+- Language: TypeScript (strict mode, noUncheckedIndexedAccess)
+- Styling: Tailwind CSS v4 — только utility-классы, никаких inline-стилей
+- Animations: Framer Motion
+- Forms: react-hook-form + zod
+- Email: Resend
+- Notifications: Telegram Bot API
+- Font: next/font (заполни название шрифта)
+- Images: только next/image, всегда width + height + alt
+
+## Project Structure
+
+src/
+├── app/                    # App Router: страницы, layout, api routes
+│   ├── actions/            # Server Actions
+│   ├── api/                # API Routes (leads, webhooks)
+│   └── (pages)/            # Группы страниц
+├── components/
+│   ├── ui/                 # Атомарные: Button, Input, Modal, Badge...
+│   ├── forms/              # LeadForm, ContactForm, CallbackForm
+│   ├── sections/           # Hero, Features, Cases, FAQ...
+│   └── layout/             # Header, Footer, Navigation, MobileMenu
+├── content/                # Статический контент: contacts.ts, pages.ts, utp.ts
+├── lib/
+│   ├── schemas/            # Zod-схемы
+│   ├── animations.ts       # Framer Motion варианты
+│   └── utils.ts            # Утилиты
+├── hooks/                  # Кастомные хуки
+└── types/                  # TypeScript типы
+## Code Style
+- Только функциональные компоненты, никаких class components
+- Именование: PascalCase для компонентов, camelCase для функций, kebab-case для файлов
+- Импорты: абсолютные через @/
+- Экспорты: именованные, не default (кроме page.tsx и layout.tsx)
+- Комментарии к бизнес-логике — на русском, к техническому коду — на английском
+- Никакого any — только конкретные типы или unknown
+- Все async функции оборачивать в try/catch
+
+## Tailwind v4 Rules
+- Токены определяются в globals.css через @theme {}
+- Никаких tailwind.config.ts — конфиг только через CSS
+- Кастомные значения только через CSS-переменные, не через arbitrary values [xxx]
+- Классы упорядочены: layout → размеры → отступы → цвет → типографика → состояния
+
+## Components Rules
+- Каждый ui-компонент принимает className для расширения стилей снаружи
+- Button всегда имеет variant (primary | secondary | outline | ghost) и size (sm | md | lg)
+- Все формы через react-hook-form, валидация только через zod
+- Анимации только через Framer Motion, не через CSS transitions вручную
+- Все интерактивные элементы имеют состояния hover, focus, disabled, loading
+
+## Content Rules
+- Никакого хардкода текстов в компонентах — только импорт из src/content/
+- Все контакты только из src/content/contacts.ts
+- Все CTA-тексты только из src/content/cta.ts
+
+## API & Forms Rules
+- Лиды отправляются одновременно в Resend (email) И Telegram Bot
+- Каждая форма имеет rate limiting
+- Zod-схема обязательна для любого входящего запроса
+- Server Actions предпочтительнее API Routes для форм
+
+## SEO Rules
+- Каждая страница имеет уникальный title и description
+- Один H1 на страницу — строго
+- Все изображения: alt обязателен, lazy loading, формат WebP предпочтителен
+- JSON-LD для главной и страниц услуг
+
+## Git Rules (для команды 2-3 человека)
+- Ветки: feat/название, fix/название, chore/название
+- Никто не коммитит напрямую в main
+- Коммиты: feat | fix | style | chore | deploy | docs
+- Перед началом работы: git pull. После окончания: git push.
+
+## What NOT to do
+- Не использовать pages/ роутер — только App Router
+- Не использовать CSS Modules или styled-components
+- Не использовать axios — только fetch с типами
+- Не использовать moment.js — только date-fns или Intl
+- Не создавать новые компоненты если похожий уже есть в src/components/ui/
+- Не трогать файлы в legacy/tilda-export/ — только читать как референс
+- Не коммитить .env.local
+
+
+Ещё одно правило - давай дополнительный абзац после правок чтобы было понятно мне так как я не разработчик понятным языком
+После пправок кода всегда сверяйся с roadmap и гвлочкой отмечай что выполненно.
