@@ -42,7 +42,7 @@
           RESEND_API_KEY, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, NEXT_PUBLIC_SITE_URL,
           NEXT_PUBLIC_YANDEX_METRIKA_ID
 - [x] 1.10 Создать структуру папок src/components/ui|forms|sections|layout, src/lib, src/hooks, src/types
-- [ ] 1.11 `git init` → первый коммит `chore: project init` → push в remote
+- [x] 1.11 `git init` → первый коммит `chore: project init` → push в remote
 
 ---
 
