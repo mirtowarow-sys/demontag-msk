@@ -91,3 +91,6 @@ coverage/
 legacy/tilda-export/css/
 legacy/tilda-export/js/
 # HTML и картинки из тильды — коммитить можно, они нужны как референс
+
+# GitHub push: keep Tilda export out of repo history
+legacy/tilda-export/

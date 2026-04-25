@@ -48,31 +48,31 @@
 
 ## ЭТАП 2 — ДИЗАЙН-СИСТЕМА И UI-КИТ
 
-- [ ] 2.1 Токены дизайна в `src/app/globals.css` через `@theme {}` (Tailwind v4)
+- [x] 2.1 Токены дизайна в `src/app/globals.css` через `@theme {}` (Tailwind v4)
           цветовая палитра, типографика, spacing, shadows, radius
           (брать из `_docs/site-audit.md` — реальные цвета клиента)
-- [ ] 2.2 Подключить шрифты через `next/font` в `src/app/layout.tsx`
-- [ ] 2.3 Глобальные базовые стили в `globals.css` (reset, scroll-behavior, selection)
-- [ ] 2.4 Framer Motion варианты → `src/lib/animations.ts`
+- [x] 2.2 Подключить шрифты через `next/font` в `src/app/layout.tsx`
+- [x] 2.3 Глобальные базовые стили в `globals.css` (reset, scroll-behavior, selection)
+- [x] 2.4 Framer Motion варианты → `src/lib/animations.ts`
           fadeIn, slideUp, slideIn, staggerContainer, scaleIn
-- [ ] 2.5 UI-компоненты `src/components/ui/`:
-          - [ ] Button (variant: primary|secondary|outline|ghost, size: sm|md|lg, loading)
-          - [ ] Input + Label + ErrorMessage
-          - [ ] Textarea
-          - [ ] Select
-          - [ ] Modal
-          - [ ] Badge
-          - [ ] Spinner
-          - [ ] Tooltip
-- [ ] 2.6 Компоненты форм `src/components/forms/`:
-          - [ ] LeadForm (имя + телефон + отправка в Resend + Telegram)
-          - [ ] ContactForm (расширенная)
-          - [ ] CallbackForm (только телефон)
-- [ ] 2.7 Layout-компоненты `src/components/layout/`:
-          - [ ] Header (десктоп + логотип + nav + CTA-кнопка)
-          - [ ] MobileMenu (burger + drawer)
-          - [ ] Footer (контакты + соцсети + копирайт)
-          - [ ] Breadcrumbs
+- [x] 2.5 UI-компоненты `src/components/ui/`:
+          - [x] Button (variant: primary|secondary|outline|ghost, size: sm|md|lg, loading)
+          - [x] Input + Label + ErrorMessage
+          - [x] Textarea
+          - [x] Select
+          - [x] Modal
+          - [x] Badge
+          - [x] Spinner
+          - [x] Tooltip
+- [x] 2.6 Компоненты форм `src/components/forms/`:
+          - [x] LeadForm (имя + телефон + отправка в Resend + Telegram)
+          - [x] ContactForm (расширенная)
+          - [x] CallbackForm (только телефон)
+- [x] 2.7 Layout-компоненты `src/components/layout/`:
+          - [x] Header (десктоп + логотип + nav + CTA-кнопка)
+          - [x] MobileMenu (burger + drawer)
+          - [x] Footer (контакты + соцсети + копирайт)
+          - [x] Breadcrumbs
 
 ---
 
