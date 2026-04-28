@@ -1,6 +1,7 @@
 import { LeadForm } from "@/components/forms/LeadForm";
 import { leadForms } from "@/content/cta";
 import { keyBenefits } from "@/content/utp";
+import { submitLead } from "@/app/actions/leads";
 
 export function CtaSection() {
   const mainLeadForm = leadForms.find((f) => f.id === "form570548798") ?? leadForms[0];
@@ -11,7 +12,8 @@ export function CtaSection() {
         <div>
           <h2 className="text-2xl font-semibold tracking-tight">Рассчитать стоимость работ</h2>
           <p className="mt-2 text-sm text-ink/70">
-            Оставьте контакты — мы перезвоним и уточним детали. Рассчитаем смету без скрытых платежей.
+            Оставьте контакты — мы перезвоним и уточним детали. Рассчитаем смету без скрытых
+            платежей.
           </p>
 
           {keyBenefits.length ? (
@@ -27,10 +29,15 @@ export function CtaSection() {
         </div>
 
         <div className="rounded-3xl border border-border bg-bg p-5 md:p-6">
-          <LeadForm submitLabel={mainLeadForm?.submitLabel ?? "Отправить"} />
+          <LeadForm
+            submitLabel={mainLeadForm?.submitLabel ?? "Отправить"}
+            onSubmitLead={async (data) => {
+              const result = await submitLead(data);
+              if (!result.ok) throw new Error(result.message);
+            }}
+          />
         </div>
       </div>
     </section>
   );
 }
-
