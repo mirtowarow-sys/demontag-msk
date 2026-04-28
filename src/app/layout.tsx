@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import { getSiteUrl, SITE_NAME } from "@/lib/site";
 
 const montserrat = Montserrat({
   subsets: ["latin", "cyrillic"],
@@ -9,8 +10,23 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Демонтаж МСК",
+  metadataBase: new URL(getSiteUrl()),
+  title: {
+    default: SITE_NAME,
+    template: `%s — ${SITE_NAME}`,
+  },
   description: "Профессиональный демонтаж в Москве и МО.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    locale: "ru_RU",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -20,4 +36,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
-

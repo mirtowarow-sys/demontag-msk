@@ -8,6 +8,30 @@ import { CasesSection } from "@/components/sections/CasesSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { CtaSection } from "@/components/sections/CtaSection";
 import { FaqSection } from "@/components/sections/FaqSection";
+import type { Metadata } from "next";
+import { pages } from "@/content/pages";
+import { SITE_NAME, getSiteUrl } from "@/lib/site";
+
+export function generateMetadata(): Metadata {
+  const siteUrl = getSiteUrl();
+  const home = pages.find((p) => p.url === "/");
+  const title = home?.title?.replace(/^«|»$/g, "").trim() || SITE_NAME;
+  const description = home?.description?.trim() || "Профессиональный демонтаж в Москве и МО.";
+
+  return {
+    title,
+    description,
+    alternates: { canonical: "/" },
+    openGraph: {
+      title,
+      description,
+      url: `${siteUrl}/`,
+      siteName: SITE_NAME,
+      type: "website",
+      locale: "ru_RU",
+    },
+  };
+}
 
 export default function HomePage() {
   return (
@@ -27,4 +51,3 @@ export default function HomePage() {
     </div>
   );
 }
-
