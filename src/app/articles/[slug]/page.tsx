@@ -8,6 +8,8 @@ import { pages } from "@/content/pages";
 import { CtaSection } from "@/components/sections/CtaSection";
 import { tildaBodies } from "@/content/tildaBodies";
 import { TildaBody } from "@/components/TildaBody";
+import { JsonLd } from "@/components/JsonLd";
+import { getSiteUrl, SITE_NAME } from "@/lib/site";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -22,6 +24,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: p.title ?? "Статья",
     description: p.description ?? undefined,
     alternates: { canonical: url },
+    openGraph: {
+      images: [{ url: `${url}/opengraph-image` }],
+    },
   };
 }
 
@@ -31,11 +36,32 @@ export default async function ArticlePage({ params }: PageProps) {
   const p = pages.find((x) => x.url === url);
   if (!p) notFound();
   const body = tildaBodies[url];
+  const siteUrl = getSiteUrl();
+  const pageUrl = `${siteUrl}${url}`;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: p.title ?? "Статья",
+    description: p.description ?? undefined,
+    mainEntityOfPage: pageUrl,
+    author: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: siteUrl,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: siteUrl,
+    },
+  };
 
   return (
     <div>
       <Header />
       <main className="mx-auto max-w-6xl px-4 py-10">
+        <JsonLd data={jsonLd} />
         <div className="flex flex-wrap items-center gap-3 text-sm text-ink/70">
           <Link href="/articles" className="hover:text-ink">
             Статьи

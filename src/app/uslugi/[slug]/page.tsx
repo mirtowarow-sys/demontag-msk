@@ -10,6 +10,8 @@ import { LeadForm } from "@/components/forms/LeadForm";
 import { submitLeadOrThrow } from "@/app/actions/leads";
 import { tildaBodies } from "@/content/tildaBodies";
 import { TildaBody } from "@/components/TildaBody";
+import { JsonLd } from "@/components/JsonLd";
+import { getSiteUrl, SITE_NAME } from "@/lib/site";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -27,6 +29,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       p?.description ??
       "Описание услуги. Оставьте заявку — мы уточним детали и рассчитаем стоимость.",
     alternates: { canonical: url },
+    openGraph: {
+      images: [{ url: `${url}/opengraph-image` }],
+    },
   };
 }
 
@@ -36,6 +41,28 @@ export default async function ServicePage({ params }: PageProps) {
   const url = `/uslugi/${slug}`;
   const p = pages.find((x) => x.url === url);
   const body = tildaBodies[url];
+  const siteUrl = getSiteUrl();
+  const pageUrl = `${siteUrl}${url}`;
+  const title = svc?.title ?? p?.title ?? "Услуга";
+  const description =
+    p?.description ?? "Демонтажные услуги в Москве и МО. Рассчитаем стоимость и сроки работ.";
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: title,
+    description,
+    url: pageUrl,
+    provider: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: siteUrl,
+    },
+    areaServed: {
+      "@type": "AdministrativeArea",
+      name: "Москва и Московская область",
+    },
+  };
 
   if (!svc && !p) notFound();
 
@@ -43,6 +70,7 @@ export default async function ServicePage({ params }: PageProps) {
     <div>
       <Header />
       <main className="mx-auto max-w-6xl px-4 py-10">
+        <JsonLd data={jsonLd} />
         <div className="flex flex-wrap items-center gap-3 text-sm text-ink/70">
           <Link href="/uslugi" className="hover:text-ink">
             Услуги
