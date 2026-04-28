@@ -3,6 +3,7 @@
 import { contacts } from "@/content/contacts";
 import { Button } from "@/components/ui/Button";
 import { Modal } from "@/components/ui/Modal";
+import { reachGoal } from "@/lib/metrics";
 
 export function MobileMenu({
   open,
@@ -39,17 +40,28 @@ export function MobileMenu({
             {contacts.email}
           </a>
           {contacts.whatsapp ? (
-            <a className="block text-sm text-ink/80" href={contacts.whatsapp.href} target="_blank" rel="noreferrer">
+            <a
+              className="block text-sm text-ink/80"
+              href={contacts.whatsapp.href}
+              target="_blank"
+              rel="noreferrer"
+            >
               WhatsApp
             </a>
           ) : null}
         </div>
 
-        <Button className="w-full justify-center" onClick={onClose}>
+        <Button
+          className="w-full justify-center"
+          onClick={() => {
+            reachGoal("click_cta", { placement: "mobile_menu" });
+            if (typeof window !== "undefined") window.location.hash = "#cta";
+            onClose();
+          }}
+        >
           Рассчитать стоимость
         </Button>
       </div>
     </Modal>
   );
 }
-

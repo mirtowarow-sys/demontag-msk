@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { leadSchema, type LeadInput } from "@/lib/schemas/lead";
+import { reachGoal } from "@/lib/metrics";
 import { Button } from "@/components/ui/Button";
 import { ErrorMessage } from "@/components/ui/ErrorMessage";
 import { Input } from "@/components/ui/Input";
@@ -36,6 +37,7 @@ export function CallbackForm({
     setServerSuccess(null);
     try {
       await onSubmitLead?.({ phone: values.phone });
+      reachGoal("form_submit", { form: "callback" });
       setServerSuccess("Спасибо! Мы скоро свяжемся с вами.");
       reset();
     } catch {
@@ -60,4 +62,3 @@ export function CallbackForm({
     </form>
   );
 }
-

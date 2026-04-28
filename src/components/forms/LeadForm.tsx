@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { leadSchema, type LeadInput } from "@/lib/schemas/lead";
+import { reachGoal } from "@/lib/metrics";
 import { Button } from "@/components/ui/Button";
 import { ErrorMessage } from "@/components/ui/ErrorMessage";
 import { Input } from "@/components/ui/Input";
@@ -48,6 +49,7 @@ export function LeadForm({
         service: values.service || undefined,
         message: values.message || undefined,
       });
+      reachGoal("form_submit", { form: "lead" });
       setServerSuccess("Заявка отправлена. Мы скоро свяжемся с вами.");
       reset();
     } catch {
@@ -60,7 +62,12 @@ export function LeadForm({
       <div className="grid gap-3 md:grid-cols-2">
         <div className="space-y-1">
           <Label htmlFor="lead-name">Имя</Label>
-          <Input id="lead-name" autoComplete="name" placeholder="Как к вам обращаться" {...register("name")} />
+          <Input
+            id="lead-name"
+            autoComplete="name"
+            placeholder="Как к вам обращаться"
+            {...register("name")}
+          />
           <ErrorMessage>{errors.name?.message}</ErrorMessage>
         </div>
 
@@ -93,7 +100,11 @@ export function LeadForm({
 
       <div className="space-y-1">
         <Label htmlFor="lead-message">Комментарий</Label>
-        <Textarea id="lead-message" placeholder="Опишите задачу (не обязательно)" {...register("message")} />
+        <Textarea
+          id="lead-message"
+          placeholder="Опишите задачу (не обязательно)"
+          {...register("message")}
+        />
         <ErrorMessage>{errors.message?.message}</ErrorMessage>
       </div>
 
@@ -106,4 +117,3 @@ export function LeadForm({
     </form>
   );
 }
-

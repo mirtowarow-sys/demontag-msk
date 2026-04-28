@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { leadSchema, type LeadInput } from "@/lib/schemas/lead";
+import { reachGoal } from "@/lib/metrics";
 import { Button } from "@/components/ui/Button";
 import { ErrorMessage } from "@/components/ui/ErrorMessage";
 import { Input } from "@/components/ui/Input";
@@ -45,6 +46,7 @@ export function ContactForm({
         email: values.email || undefined,
         message: values.message || undefined,
       });
+      reachGoal("form_submit", { form: "contact" });
       setServerSuccess("Сообщение отправлено. Мы скоро свяжемся с вами.");
       reset();
     } catch {
@@ -57,7 +59,12 @@ export function ContactForm({
       <div className="grid gap-3 md:grid-cols-2">
         <div className="space-y-1">
           <Label htmlFor="contact-name">Имя</Label>
-          <Input id="contact-name" autoComplete="name" placeholder="Как к вам обращаться" {...register("name")} />
+          <Input
+            id="contact-name"
+            autoComplete="name"
+            placeholder="Как к вам обращаться"
+            {...register("name")}
+          />
           <ErrorMessage>{errors.name?.message}</ErrorMessage>
         </div>
 
@@ -76,7 +83,13 @@ export function ContactForm({
 
       <div className="space-y-1">
         <Label htmlFor="contact-email">Email</Label>
-        <Input id="contact-email" autoComplete="email" inputMode="email" placeholder="you@example.com" {...register("email")} />
+        <Input
+          id="contact-email"
+          autoComplete="email"
+          inputMode="email"
+          placeholder="you@example.com"
+          {...register("email")}
+        />
         <ErrorMessage>{errors.email?.message}</ErrorMessage>
       </div>
 
@@ -95,4 +108,3 @@ export function ContactForm({
     </form>
   );
 }
-

@@ -1,6 +1,7 @@
 "use client";
 
 import { contacts } from "@/content/contacts";
+import { reachGoal } from "@/lib/metrics";
 
 export function Footer() {
   return (
@@ -14,10 +15,17 @@ export function Footer() {
 
           <div className="space-y-2">
             <p className="text-sm font-semibold">Контакты</p>
-            <a className="block text-sm text-ink/80 hover:text-ink" href={`tel:${contacts.phoneE164}`}>
+            <a
+              className="block text-sm text-ink/80 hover:text-ink"
+              href={`tel:${contacts.phoneE164}`}
+              onClick={() => reachGoal("phone_click", { placement: "footer" })}
+            >
               {contacts.phoneDisplay}
             </a>
-            <a className="block text-sm text-ink/80 hover:text-ink" href={`mailto:${contacts.email}`}>
+            <a
+              className="block text-sm text-ink/80 hover:text-ink"
+              href={`mailto:${contacts.email}`}
+            >
               {contacts.email}
             </a>
           </div>
@@ -45,4 +53,3 @@ export function Footer() {
     </footer>
   );
 }
-

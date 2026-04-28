@@ -4,8 +4,12 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { contacts } from "@/content/contacts";
+import { submitLead } from "@/app/actions/leads";
 import { Button } from "@/components/ui/Button";
 import { MobileMenu } from "@/components/layout/MobileMenu";
+import { Modal } from "@/components/ui/Modal";
+import { LeadForm } from "@/components/forms/LeadForm";
+import { reachGoal } from "@/lib/metrics";
 
 const nav = [
   { href: "#services", label: "Услуги" },
@@ -15,7 +19,8 @@ const nav = [
 ];
 
 export function Header() {
-  const [open, setOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [leadOpen, setLeadOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-bg/80 backdrop-blur">
@@ -33,10 +38,21 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <a className="text-sm font-medium text-ink hover:text-ink/80" href={`tel:${contacts.phoneE164}`}>
+          <a
+            className="text-sm font-medium text-ink hover:text-ink/80"
+            href={`tel:${contacts.phoneE164}`}
+            onClick={() => reachGoal("phone_click", { placement: "header" })}
+          >
             {contacts.phoneDisplay}
           </a>
-          <Button onClick={() => setOpen(true)} variant="primary" size="sm">
+          <Button
+            onClick={() => {
+              reachGoal("click_cta", { placement: "header" });
+              setLeadOpen(true);
+            }}
+            variant="primary"
+            size="sm"
+          >
             Рассчитать стоимость
           </Button>
         </div>
@@ -45,15 +61,29 @@ export function Header() {
           type="button"
           className="inline-flex size-10 items-center justify-center rounded-full border border-border md:hidden"
           aria-label="Меню"
-          onClick={() => setOpen(true)}
+          onClick={() => setMenuOpen(true)}
         >
           <span className="block h-0.5 w-5 bg-ink" />
           <span className="sr-only">Открыть меню</span>
         </button>
       </div>
 
-      <MobileMenu open={open} onClose={() => setOpen(false)} nav={nav} />
+      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} nav={nav} />
+
+      <Modal
+        open={leadOpen}
+        onClose={() => setLeadOpen(false)}
+        title="Рассчитать стоимость"
+        className="p-4"
+      >
+        <LeadForm
+          submitLabel="Отправить"
+          onSubmitLead={async (data) => {
+            const result = await submitLead(data);
+            if (!result.ok) throw new Error(result.message);
+          }}
+        />
+      </Modal>
     </header>
   );
 }
-

@@ -2,14 +2,19 @@ import { contacts } from "@/content/contacts";
 import { hero } from "@/content/utp";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { reachGoal } from "@/lib/metrics";
 
 export function HeroSection() {
   return (
     <section className="py-10">
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div className="max-w-2xl">
-          <h1 className="text-balance text-3xl font-semibold tracking-tight md:text-5xl">{hero.title}</h1>
-          {hero.subtitle ? <p className="mt-3 text-lg text-ink/70 md:text-xl">{hero.subtitle}</p> : null}
+          <h1 className="text-balance text-3xl font-semibold tracking-tight md:text-5xl">
+            {hero.title}
+          </h1>
+          {hero.subtitle ? (
+            <p className="mt-3 text-lg text-ink/70 md:text-xl">{hero.subtitle}</p>
+          ) : null}
 
           {hero.bullets?.length ? (
             <div className="mt-5 flex flex-wrap gap-2">
@@ -21,7 +26,10 @@ export function HeroSection() {
         </div>
 
         <div className="flex flex-col gap-3 sm:flex-row">
-          <a href={`tel:${contacts.phoneE164}`}>
+          <a
+            href={`tel:${contacts.phoneE164}`}
+            onClick={() => reachGoal("phone_click", { placement: "hero" })}
+          >
             <Button className="w-full sm:w-auto">Позвонить</Button>
           </a>
           <a href={`mailto:${contacts.email}`}>
@@ -34,4 +42,3 @@ export function HeroSection() {
     </section>
   );
 }
-
