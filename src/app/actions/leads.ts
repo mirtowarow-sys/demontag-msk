@@ -20,8 +20,8 @@ function getRateLimitStore() {
   return globalThis.__leadRateLimit;
 }
 
-function getClientIp() {
-  const h = headers();
+async function getClientIp() {
+  const h = await headers();
   const xff = h.get("x-forwarded-for")?.split(",")[0]?.trim();
   return xff || h.get("x-real-ip") || "unknown";
 }
@@ -85,7 +85,7 @@ export async function submitLead(input: LeadInput): Promise<SubmitLeadResult> {
   const parsed = leadSchema.safeParse(input);
   if (!parsed.success) return { ok: false, message: "Проверьте поля формы и попробуйте ещё раз." };
 
-  const ip = getClientIp();
+  const ip = await getClientIp();
   if (!checkRateLimit(ip)) {
     return {
       ok: false,
@@ -107,4 +107,9 @@ export async function submitLead(input: LeadInput): Promise<SubmitLeadResult> {
   } catch {
     return { ok: false, message: "Не удалось отправить заявку. Попробуйте ещё раз." };
   }
+}
+
+export async function submitLeadOrThrow(input: LeadInput): Promise<void> {
+  const result = await submitLead(input);
+  if (!result.ok) throw new Error(result.message);
 }

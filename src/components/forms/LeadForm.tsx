@@ -17,10 +17,12 @@ export function LeadForm({
   onSubmitLead,
   submitLabel = "Отправить",
   serviceOptions,
+  presetService,
 }: {
   onSubmitLead?: (data: LeadInput) => Promise<void> | void;
   submitLabel?: string;
   serviceOptions?: SelectOption[];
+  presetService?: string;
 }) {
   const schema = useMemo(
     () => leadSchema.pick({ name: true, phone: true, service: true, message: true }),
@@ -46,7 +48,7 @@ export function LeadForm({
       await onSubmitLead?.({
         name: values.name || undefined,
         phone: values.phone,
-        service: values.service || undefined,
+        service: values.service || presetService || undefined,
         message: values.message || undefined,
       });
       reachGoal("form_submit", { form: "lead" });

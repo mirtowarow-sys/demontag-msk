@@ -2,7 +2,7 @@ import { contacts } from "@/content/contacts";
 import { hero } from "@/content/utp";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { reachGoal } from "@/lib/metrics";
+import { TrackedLink } from "@/components/TrackedLink";
 
 export function HeroSection() {
   return (
@@ -26,12 +26,13 @@ export function HeroSection() {
         </div>
 
         <div className="flex flex-col gap-3 sm:flex-row">
-          <a
+          <TrackedLink
             href={`tel:${contacts.phoneE164}`}
-            onClick={() => reachGoal("phone_click", { placement: "hero" })}
+            goal="phone_click"
+            params={{ placement: "hero" }}
           >
             <Button className="w-full sm:w-auto">Позвонить</Button>
-          </a>
+          </TrackedLink>
           <a href={`mailto:${contacts.email}`}>
             <Button variant="outline" className="w-full sm:w-auto">
               Написать email

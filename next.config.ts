@@ -9,13 +9,12 @@ const nextConfig: NextConfig = {
       { source: "/page35905553", destination: "/", permanent: true },
       { source: "/page35906216", destination: "/", permanent: true },
 
-      // Legacy sections/pages → homepage anchors
-      { source: "/contact", destination: "/#contacts", permanent: true },
-      { source: "/kontakty", destination: "/#contacts", permanent: true },
+      // Legacy pages
+      { source: "/kontakty", destination: "/contact", permanent: true },
       { source: "/otzyvy", destination: "/#reviews", permanent: true },
       { source: "/portfolio", destination: "/#cases", permanent: true },
       { source: "/price", destination: "/#cta", permanent: true },
-      { source: "/uslugi", destination: "/#services", permanent: true },
+      { source: "/uslugi", destination: "/uslugi", permanent: true },
     ];
   },
   images: {
@@ -24,4 +23,3 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
-

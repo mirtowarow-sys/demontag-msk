@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { contacts } from "@/content/contacts";
-import { submitLead } from "@/app/actions/leads";
+import { submitLeadOrThrow } from "@/app/actions/leads";
 import { Button } from "@/components/ui/Button";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import { Modal } from "@/components/ui/Modal";
@@ -76,13 +76,7 @@ export function Header() {
         title="Рассчитать стоимость"
         className="p-4"
       >
-        <LeadForm
-          submitLabel="Отправить"
-          onSubmitLead={async (data) => {
-            const result = await submitLead(data);
-            if (!result.ok) throw new Error(result.message);
-          }}
-        />
+        <LeadForm submitLabel="Отправить" onSubmitLead={submitLeadOrThrow} />
       </Modal>
     </header>
   );
