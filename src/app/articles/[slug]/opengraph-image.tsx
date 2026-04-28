@@ -6,12 +6,18 @@ import { SITE_NAME } from "@/lib/site";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+function sanitize(text: string) {
+  return text.replaceAll("₽", "руб.");
+}
+
 export default async function OpenGraphImage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const url = `/articles/${slug}`;
   const p = pages.find((x) => x.url === url);
-  const title = p?.title ?? "Статья";
-  const description = p?.description ?? "Полезные материалы и новости по демонтажным работам.";
+  const title = sanitize(p?.title ?? "Статья");
+  const description = sanitize(
+    p?.description ?? "Полезные материалы и новости по демонтажным работам.",
+  );
 
   return new ImageResponse(
     <div

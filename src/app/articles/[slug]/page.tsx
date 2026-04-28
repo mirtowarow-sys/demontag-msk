@@ -57,11 +57,22 @@ export default async function ArticlePage({ params }: PageProps) {
     },
   };
 
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Главная", item: siteUrl },
+      { "@type": "ListItem", position: 2, name: "Статьи", item: `${siteUrl}/articles` },
+      { "@type": "ListItem", position: 3, name: p.title ?? slug, item: pageUrl },
+    ],
+  };
+
   return (
     <div>
       <Header />
       <main className="mx-auto max-w-6xl px-4 py-10">
         <JsonLd data={jsonLd} />
+        <JsonLd data={breadcrumbLd} />
         <div className="flex flex-wrap items-center gap-3 text-sm text-ink/70">
           <Link href="/articles" className="hover:text-ink">
             Статьи

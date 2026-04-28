@@ -11,6 +11,8 @@ import { FaqSection } from "@/components/sections/FaqSection";
 import type { Metadata } from "next";
 import { pages } from "@/content/pages";
 import { SITE_NAME, getSiteUrl } from "@/lib/site";
+import { JsonLd } from "@/components/JsonLd";
+import { contacts } from "@/content/contacts";
 
 export function generateMetadata(): Metadata {
   const siteUrl = getSiteUrl();
@@ -29,15 +31,31 @@ export function generateMetadata(): Metadata {
       siteName: SITE_NAME,
       type: "website",
       locale: "ru_RU",
+      images: [{ url: "/opengraph-image" }],
     },
   };
 }
 
 export default function HomePage() {
+  const siteUrl = getSiteUrl();
+  const organizationLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SITE_NAME,
+    url: siteUrl,
+    email: contacts.email,
+    telephone: contacts.phoneDisplay,
+    areaServed: {
+      "@type": "AdministrativeArea",
+      name: contacts.city ?? "Москва и МО",
+    },
+  };
+
   return (
     <div>
       <Header />
       <main className="mx-auto max-w-6xl px-4 py-10">
+        <JsonLd data={organizationLd} />
         <HeroSection />
         <SocialProofSection />
         <FeaturesSection />

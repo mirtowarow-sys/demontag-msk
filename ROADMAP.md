@@ -11,16 +11,16 @@
 
 - [x] 0.1 Открыть экспорт в Cursor, НЕ редактировать файлы тильды
 - [x] 0.2 Аудит структуры через ИИ → `_docs/site-audit.md`
-          все секции, тексты, цвета, шрифты, формы, внешние сервисы
+      все секции, тексты, цвета, шрифты, формы, внешние сервисы
 - [x] 0.3 Извлечь контакты → `src/content/contacts.ts`
-          телефоны, email, адреса, соцсети, мессенджеры
+      телефоны, email, адреса, соцсети, мессенджеры
 - [x] 0.4 Составить список страниц → `src/content/pages.ts`
-          URL, заголовок, мета-описание, тип страницы
+      URL, заголовок, мета-описание, тип страницы
 - [x] 0.5 Извлечь УТП и офферы → `src/content/utp.ts`
-          заголовки секций, подзаголовки, буллеты преимуществ
+      заголовки секций, подзаголовки, буллеты преимуществ
 - [x] 0.6 Извлечь CTA-тексты и формы → `src/content/cta.ts`
 - [x] 0.7 Собрать список медиафайлов → `src/content/media.ts`
-          скачать все внешние картинки с tildacdn → `public/images/`
+      скачать все внешние картинки с tildacdn → `public/images/`
 - [x] 0.8 Переместить весь экспорт в `legacy/tilda-export/` — больше не трогать
 - [x] 0.9 Верификация: весь контент вынесен, оригинальные HTML не нужны
 
@@ -30,17 +30,17 @@
 
 - [x] 1.1 `npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias "@/*"`
 - [x] 1.2 Prod-зависимости:
-          `framer-motion react-hook-form zod @hookform/resolvers resend`
+      `framer-motion react-hook-form zod @hookform/resolvers resend`
 - [x] 1.3 Dev-зависимости:
-          `prettier prettier-plugin-tailwindcss lint-staged husky @types/node`
-- [x] 1.4 `tsconfig.json`: strict + noUncheckedIndexedAccess + paths @/*
+      `prettier prettier-plugin-tailwindcss lint-staged husky @types/node`
+- [x] 1.4 `tsconfig.json`: strict + noUncheckedIndexedAccess + paths @/\*
 - [ ] 1.5 `.cursorrules` — заполнить PROJECT CONTEXT под конкретный проект
 - [x] 1.6 `next.config.ts`: domains для images, redirects (со старых URL тильды)
 - [x] 1.7 ESLint + Prettier + `prettier-plugin-tailwindcss`
 - [x] 1.8 lint-staged + husky (pre-commit)
 - [x] 1.9 `.env.local` локально + `.env.example` в git:
-          RESEND_API_KEY, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, NEXT_PUBLIC_SITE_URL,
-          NEXT_PUBLIC_YANDEX_METRIKA_ID
+      RESEND_API_KEY, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, NEXT_PUBLIC_SITE_URL,
+      NEXT_PUBLIC_YANDEX_METRIKA_ID
 - [x] 1.10 Создать структуру папок src/components/ui|forms|sections|layout, src/lib, src/hooks, src/types
 - [x] 1.11 `git init` → первый коммит `chore: project init` → push в remote
 
@@ -49,44 +49,21 @@
 ## ЭТАП 2 — ДИЗАЙН-СИСТЕМА И UI-КИТ
 
 - [x] 2.1 Токены дизайна в `src/app/globals.css` через `@theme {}` (Tailwind v4)
-          цветовая палитра, типографика, spacing, shadows, radius
-          (брать из `_docs/site-audit.md` — реальные цвета клиента)
+      цветовая палитра, типографика, spacing, shadows, radius
+      (брать из `_docs/site-audit.md` — реальные цвета клиента)
 - [x] 2.2 Подключить шрифты через `next/font` в `src/app/layout.tsx`
 - [x] 2.3 Глобальные базовые стили в `globals.css` (reset, scroll-behavior, selection)
 - [x] 2.4 Framer Motion варианты → `src/lib/animations.ts`
-          fadeIn, slideUp, slideIn, staggerContainer, scaleIn
-- [x] 2.5 UI-компоненты `src/components/ui/`:
-          - [x] Button (variant: primary|secondary|outline|ghost, size: sm|md|lg, loading)
-          - [x] Input + Label + ErrorMessage
-          - [x] Textarea
-          - [x] Select
-          - [x] Modal
-          - [x] Badge
-          - [x] Spinner
-          - [x] Tooltip
-- [x] 2.6 Компоненты форм `src/components/forms/`:
-          - [x] LeadForm (имя + телефон + отправка в Resend + Telegram)
-          - [x] ContactForm (расширенная)
-          - [x] CallbackForm (только телефон)
-- [x] 2.7 Layout-компоненты `src/components/layout/`:
-          - [x] Header (десктоп + логотип + nav + CTA-кнопка)
-          - [x] MobileMenu (burger + drawer)
-          - [x] Footer (контакты + соцсети + копирайт)
-          - [x] Breadcrumbs
+      fadeIn, slideUp, slideIn, staggerContainer, scaleIn
+- [x] 2.5 UI-компоненты `src/components/ui/`: - [x] Button (variant: primary|secondary|outline|ghost, size: sm|md|lg, loading) - [x] Input + Label + ErrorMessage - [x] Textarea - [x] Select - [x] Modal - [x] Badge - [x] Spinner - [x] Tooltip
+- [x] 2.6 Компоненты форм `src/components/forms/`: - [x] LeadForm (имя + телефон + отправка в Resend + Telegram) - [x] ContactForm (расширенная) - [x] CallbackForm (только телефон)
+- [x] 2.7 Layout-компоненты `src/components/layout/`: - [x] Header (десктоп + логотип + nav + CTA-кнопка) - [x] MobileMenu (burger + drawer) - [x] Footer (контакты + соцсети + копирайт) - [x] Breadcrumbs
 
 ---
 
 ## ЭТАП 3 — СБОРКА СТРАНИЦ
 
-- [x] 3.1 Главная `/` → `src/app/page.tsx`
-          - [x] Hero (заголовок + подзаголовок + CTA + медиа)
-          - [x] Social proof (цифры / логотипы клиентов)
-          - [x] УТП / Features
-          - [x] Services (список услуг)
-          - [x] Cases / Портфолио
-          - [x] Testimonials (отзывы)
-          - [x] CTA-секция (форма или кнопка)
-          - [x] FAQ
+- [x] 3.1 Главная `/` → `src/app/page.tsx` - [x] Hero (заголовок + подзаголовок + CTA + медиа) - [x] Social proof (цифры / логотипы клиентов) - [x] УТП / Features - [x] Services (список услуг) - [x] Cases / Портфолио - [x] Testimonials (отзывы) - [x] CTA-секция (форма или кнопка) - [x] FAQ
 - [ ] 3.2 Остальные страницы из `src/content/pages.ts`
 - [x] 3.3 Страница 404 → `src/app/not-found.tsx`
 - [x] 3.4 Страница ошибки → `src/app/error.tsx`
@@ -100,14 +77,13 @@
 ## ЭТАП 4 — БИЗНЕС-ЛОГИКА И API
 
 - [ ] 4.1 Server Action для лидов → `src/app/actions/leads.ts`
-          валидация zod + отправка в Resend + отправка в Telegram
+      валидация zod + отправка в Resend + отправка в Telegram
 - [ ] 4.2 Zod-схемы → `src/lib/schemas/lead.ts`, `contact.ts`
 - [ ] 4.3 Resend: шаблон письма менеджеру + авто-ответ клиенту
 - [ ] 4.4 Telegram Bot: форматированное сообщение с данными лида
 - [ ] 4.5 Rate limiting для форм (через headers / ip)
 - [ ] 4.6 Toast-уведомления (успех / ошибка) — react-hot-toast или sonner
-- [ ] 4.7 Яндекс.Метрика → `src/components/YandexMetrika.tsx`
-          + цели: form_submit, phone_click, click_cta
+- [ ] 4.7 Яндекс.Метрика → `src/components/YandexMetrika.tsx` + цели: form_submit, phone_click, click_cta
 - [ ] 4.8 Проверить что все формы реально отправляют (тест на staging)
 
 ---
@@ -117,11 +93,8 @@
 - [ ] 5.1 Все изображения через `next/image` с width + height + alt + priority (для above-fold)
 - [ ] 5.2 Конвертировать все jpg/png в WebP (`npx sharp-cli` или squoosh)
 - [ ] 5.3 Lazy loading тяжёлых секций (`dynamic(() => import(...), { ssr: false })`)
-- [ ] 5.4 JSON-LD Structured Data:
-          - [ ] Organization (главная)
-          - [ ] Service (страницы услуг)
-          - [ ] BreadcrumbList (внутренние страницы)
-- [ ] 5.5 OG-изображение → `src/app/opengraph-image.tsx` (1200×630)
+- [ ] 5.4 JSON-LD Structured Data: - [x] Organization (главная) - [x] Service (страницы услуг) - [x] BreadcrumbList (внутренние страницы)
+- [x] 5.5 OG-изображение → `src/app/opengraph-image.tsx` (1200×630)
 - [ ] 5.6 Проверить sitemap.xml и robots.txt на prod
 - [ ] 5.7 Lighthouse: Performance > 85 mobile, > 95 desktop
 - [ ] 5.8 Core Web Vitals: LCP < 2.5s · CLS < 0.1 · FID < 100ms
@@ -144,6 +117,7 @@
 ## ЭТАП 7 — ДЕПЛОЙ НА TIMEWEB / REG.RU
 
 ### 7.1 Подготовка сервера (один раз)
+
 - [ ] Подключиться: `ssh root@IP`
 - [ ] Обновить систему: `apt update && apt upgrade -y`
 - [ ] Установить nvm → Node LTS → PM2: `npm install -g pm2`
@@ -152,6 +126,7 @@
 - [ ] Создать папку проекта: `mkdir -p /var/www/[project-name]`
 
 ### 7.2 Первый деплой
+
 - [ ] Клонировать репозиторий на сервер: `git clone [repo] /var/www/[project-name]`
 - [ ] Создать `.env.local` на сервере вручную (не через git!)
 - [ ] `npm install && npm run build`
@@ -160,17 +135,20 @@
 - [ ] `pm2 startup && pm2 save` — автозапуск при ребуте
 
 ### 7.3 Nginx
+
 - [ ] Создать конфиг `/etc/nginx/sites-available/[project-name].conf` (шаблон ниже)
 - [ ] `ln -s /etc/nginx/sites-available/[project-name].conf /etc/nginx/sites-enabled/`
 - [ ] `nginx -t && systemctl reload nginx`
 
 ### 7.4 SSL и домен
+
 - [ ] Добавить A-записи у регистратора: `@` и `www` → IP сервера
 - [ ] Подождать DNS (15 мин — 24 ч), проверить `nslookup [domain]`
 - [ ] Получить SSL: `certbot --nginx -d [domain] -d www.[domain]`
 - [ ] Проверить автообновление: `certbot renew --dry-run`
 
 ### 7.5 Финальная проверка прод
+
 - [ ] Сайт открывается по https://
 - [ ] Редирект http → https работает
 - [ ] Редирект www → без www (или наоборот) работает
@@ -194,25 +172,29 @@
 ## ШАБЛОНЫ
 
 ### ecosystem.config.js
+
 ```js
 module.exports = {
-  apps: [{
-    name: '[project-name]',
-    script: 'node_modules/.bin/next',
-    args: 'start',
-    cwd: '/var/www/[project-name]',
-    instances: 2,
-    exec_mode: 'cluster',
-    env: { NODE_ENV: 'production', PORT: 3000 },
-    max_memory_restart: '500M',
-    error_file: '/var/log/pm2/[project-name]-error.log',
-    out_file: '/var/log/pm2/[project-name]-out.log',
-    log_date_format: 'YYYY-MM-DD HH:mm:ss',
-  }],
+  apps: [
+    {
+      name: "[project-name]",
+      script: "node_modules/.bin/next",
+      args: "start",
+      cwd: "/var/www/[project-name]",
+      instances: 2,
+      exec_mode: "cluster",
+      env: { NODE_ENV: "production", PORT: 3000 },
+      max_memory_restart: "500M",
+      error_file: "/var/log/pm2/[project-name]-error.log",
+      out_file: "/var/log/pm2/[project-name]-out.log",
+      log_date_format: "YYYY-MM-DD HH:mm:ss",
+    },
+  ],
 };
 ```
 
 ### Команды обновления сайта
+
 ```bash
 cd /var/www/[project-name]
 git pull origin main
@@ -223,4 +205,4 @@ pm2 reload [project-name]
 
 ---
 
-*Обновляй статусы по ходу работы. Один этап — один PR в main.*
+_Обновляй статусы по ходу работы. Один этап — один PR в main._
