@@ -78,22 +78,22 @@
 
 ## ЭТАП 3 — СБОРКА СТРАНИЦ
 
-- [ ] 3.1 Главная `/` → `src/app/page.tsx`
-          - [ ] Hero (заголовок + подзаголовок + CTA + медиа)
-          - [ ] Social proof (цифры / логотипы клиентов)
-          - [ ] УТП / Features
-          - [ ] Services (список услуг)
-          - [ ] Cases / Портфолио
-          - [ ] Testimonials (отзывы)
-          - [ ] CTA-секция (форма или кнопка)
-          - [ ] FAQ
+- [x] 3.1 Главная `/` → `src/app/page.tsx`
+          - [x] Hero (заголовок + подзаголовок + CTA + медиа)
+          - [x] Social proof (цифры / логотипы клиентов)
+          - [x] УТП / Features
+          - [x] Services (список услуг)
+          - [x] Cases / Портфолио
+          - [x] Testimonials (отзывы)
+          - [x] CTA-секция (форма или кнопка)
+          - [x] FAQ
 - [ ] 3.2 Остальные страницы из `src/content/pages.ts`
-- [ ] 3.3 Страница 404 → `src/app/not-found.tsx`
-- [ ] 3.4 Страница ошибки → `src/app/error.tsx`
+- [x] 3.3 Страница 404 → `src/app/not-found.tsx`
+- [x] 3.4 Страница ошибки → `src/app/error.tsx`
 - [ ] 3.5 `robots.ts` и `sitemap.ts` → `src/app/`
 - [ ] 3.6 Metadata для всех страниц (title, description, og:image, canonical)
 - [ ] 3.7 Мобильная адаптация: 320 / 375 / 768 / 1280 / 1440 / 1920px
-- [ ] 3.8 Redirects со старых URL тильды → `next.config.ts`
+- [x] 3.8 Redirects со старых URL тильды → `next.config.ts`
 
 ---
 
