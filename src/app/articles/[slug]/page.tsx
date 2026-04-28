@@ -6,6 +6,8 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { pages } from "@/content/pages";
 import { CtaSection } from "@/components/sections/CtaSection";
+import { tildaBodies } from "@/content/tildaBodies";
+import { TildaBody } from "@/components/TildaBody";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -28,6 +30,7 @@ export default async function ArticlePage({ params }: PageProps) {
   const url = `/articles/${slug}`;
   const p = pages.find((x) => x.url === url);
   if (!p) notFound();
+  const body = tildaBodies[url];
 
   return (
     <div>
@@ -46,11 +49,15 @@ export default async function ArticlePage({ params }: PageProps) {
         </h1>
         {p.description ? <p className="mt-3 text-sm text-ink/70">{p.description}</p> : null}
 
-        <article className="prose prose-invert mt-8 max-w-none">
-          <p>
-            Эта страница подготовлена на основе структуры старого сайта. Полный текст статьи мы
-            добавим на следующем шаге (из экспорта/материалов клиента).
-          </p>
+        <article className="mt-8 rounded-3xl border border-border bg-bg p-6">
+          {body ? (
+            <TildaBody text={body} />
+          ) : (
+            <p className="text-sm text-ink/80">
+              Текст статьи пока не найден в экспорте. Если пришлёте материалы — добавим полноценную
+              версию.
+            </p>
+          )}
         </article>
 
         <div className="mt-10">

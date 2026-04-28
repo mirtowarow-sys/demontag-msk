@@ -8,6 +8,8 @@ import { services } from "@/content/services";
 import { pages } from "@/content/pages";
 import { LeadForm } from "@/components/forms/LeadForm";
 import { submitLeadOrThrow } from "@/app/actions/leads";
+import { tildaBodies } from "@/content/tildaBodies";
+import { TildaBody } from "@/components/TildaBody";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -33,6 +35,7 @@ export default async function ServicePage({ params }: PageProps) {
   const svc = services.find((s) => s.id === slug);
   const url = `/uslugi/${slug}`;
   const p = pages.find((x) => x.url === url);
+  const body = tildaBodies[url];
 
   if (!svc && !p) notFound();
 
@@ -54,6 +57,19 @@ export default async function ServicePage({ params }: PageProps) {
         {p?.description ? <p className="mt-3 text-sm text-ink/70">{p.description}</p> : null}
 
         <div className="mt-10 grid gap-6 md:grid-cols-2">
+          <div className="rounded-3xl border border-border bg-bg p-6 md:col-span-2">
+            <p className="text-sm font-semibold">Описание</p>
+            <div className="mt-4">
+              {body ? (
+                <TildaBody text={body} />
+              ) : (
+                <p className="text-sm text-ink/80">
+                  Текст услуги пока не найден в экспорте. Мы добавим его на следующем шаге.
+                </p>
+              )}
+            </div>
+          </div>
+
           <div className="rounded-3xl border border-border bg-surface p-6">
             <p className="text-sm font-semibold">Что входит</p>
             <ul className="mt-4 space-y-2 text-sm text-ink/80">
@@ -84,7 +100,7 @@ export default async function ServicePage({ params }: PageProps) {
             <div className="mt-5">
               <LeadForm
                 submitLabel="Отправить"
-                presetService={svc?.title ?? undefined}
+                presetService={svc?.title ?? p?.title ?? undefined}
                 onSubmitLead={submitLeadOrThrow}
               />
             </div>
