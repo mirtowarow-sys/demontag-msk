@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Script from "next/script";
 
 export function YandexMetrika() {
@@ -25,11 +26,13 @@ export function YandexMetrika() {
       </Script>
       <noscript>
         <div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={`https://mc.yandex.ru/watch/${id}`}
-            style={{ position: "absolute", left: "-9999px" }}
             alt=""
+            width={1}
+            height={1}
+            style={{ position: "absolute", left: "-9999px" }}
+            unoptimized
           />
         </div>
       </noscript>
