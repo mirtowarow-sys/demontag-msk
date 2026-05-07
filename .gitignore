@@ -37,6 +37,11 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # ==============================
+# REPORTS (local)
+# ==============================
+_docs/lighthouse-*.report.*
+
+# ==============================
 # CACHE
 # ==============================
 .eslintcache
