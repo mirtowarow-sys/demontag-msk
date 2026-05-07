@@ -93,16 +93,24 @@ export async function submitLead(input: LeadInput): Promise<SubmitLeadResult> {
     };
   }
 
+  const hasTelegram = Boolean(process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID);
+  const hasEmail = Boolean(process.env.RESEND_API_KEY);
+  if (!hasTelegram && !hasEmail) {
+    return {
+      ok: false,
+      message: "Заявки временно недоступны. Пожалуйста, позвоните или напишите нам на email.",
+    };
+  }
+
   const lead = parsed.data;
   const text = formatLeadText(lead);
 
   try {
-    await Promise.all([
-      sendTelegram(
-        `<b>Новая заявка</b>\n\n${text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")}`,
-      ),
-      sendEmail("Новая заявка с сайта Демонтаж МСК", text),
-    ]);
+    const escaped = text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+    const tasks: Array<Promise<unknown>> = [];
+    if (hasTelegram) tasks.push(sendTelegram(`<b>Новая заявка</b>\n\n${escaped}`));
+    if (hasEmail) tasks.push(sendEmail("Новая заявка с сайта Демонтаж МСК", text));
+    await Promise.all(tasks);
     return { ok: true };
   } catch {
     return { ok: false, message: "Не удалось отправить заявку. Попробуйте ещё раз." };
