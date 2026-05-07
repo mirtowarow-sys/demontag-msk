@@ -14,7 +14,6 @@ const nextConfig: NextConfig = {
       { source: "/otzyvy", destination: "/#reviews", permanent: true },
       { source: "/portfolio", destination: "/#cases", permanent: true },
       { source: "/price", destination: "/#cta", permanent: true },
-      { source: "/uslugi", destination: "/uslugi", permanent: true },
     ];
   },
   images: {
