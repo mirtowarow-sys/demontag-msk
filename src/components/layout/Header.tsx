@@ -23,23 +23,30 @@ export function Header() {
   const [leadOpen, setLeadOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-black/[0.06] bg-bg/86 shadow-[0_10px_44px_-38px_rgba(28,36,48,0.45)] backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3.5">
-        <Link href="/" className="font-display text-lg font-semibold tracking-[-0.02em]">
+    <header className="sticky top-0 z-40 border-b border-[#cddcea]/90 bg-[#fbfdff]/88 shadow-[0_18px_50px_-40px_rgba(12,40,76,0.45)] backdrop-blur-xl backdrop-saturate-150">
+      <div className="mx-auto flex max-w-[92rem] items-center justify-between gap-4 px-5 py-[0.9rem] md:px-10">
+        <Link
+          href="/"
+          className="text-lg font-extrabold tracking-[-0.05em] text-ink sm:text-[1.2rem]"
+        >
           Демонтаж МСК
         </Link>
 
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-[1.7rem] md:flex">
           {nav.map((i) => (
-            <a key={i.href} href={i.href} className="text-sm text-ink/80 hover:text-ink">
+            <a
+              key={i.href}
+              href={i.href}
+              className="text-[0.875rem] font-semibold text-ink/67 transition hover:text-ink"
+            >
               {i.label}
             </a>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-4 md:flex">
           <a
-            className="text-sm font-medium text-ink hover:text-ink/80"
+            className="text-[0.875rem] font-bold tabular-nums tracking-tight text-ink hover:text-ink/80"
             href={`tel:${contacts.phoneE164}`}
             onClick={() => reachGoal("phone_click", { placement: "header" })}
           >
@@ -52,6 +59,7 @@ export function Header() {
             }}
             variant="primary"
             size="sm"
+            className="h-10 px-[1.1rem] font-bold shadow-[0_12px_32px_-10px_rgba(255,192,42,0.55)]"
           >
             Рассчитать стоимость
           </Button>
@@ -59,11 +67,11 @@ export function Header() {
 
         <button
           type="button"
-          className="inline-flex size-10 items-center justify-center rounded-full border border-border md:hidden"
+          className="inline-flex size-11 items-center justify-center rounded-full border border-[#dbe6f5] bg-white/95 shadow-[0_12px_32px_-24px_rgba(12,40,76,0.35)] md:hidden"
           aria-label="Меню"
           onClick={() => setMenuOpen(true)}
         >
-          <span className="block h-0.5 w-5 bg-ink" />
+          <span className="block h-0.5 w-[1.375rem] bg-ink shadow-sm" />
           <span className="sr-only">Открыть меню</span>
         </button>
       </div>

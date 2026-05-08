@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 
-import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
+import { Reveal } from "@/components/motion/Reveal";
 import { ServiceListingGrid } from "@/components/uslugi/ServiceListingGrid";
 import { canonicalServiceSlugs } from "@/content/canonical";
 import type { CanonicalServiceSlug } from "@/content/canonical";
 import { pages } from "@/content/pages";
 import { serviceCoverUrls } from "@/content/serviceCoverUrls";
 import { services } from "@/content/services";
-import { Reveal } from "@/components/motion/Reveal";
+import { pageHeroBandClass } from "@/lib/marketing-surfaces";
 
 export function generateMetadata(): Metadata {
   const p = pages.find((x) => x.url === "/uslugi");
@@ -45,34 +46,36 @@ export default function ServicesIndexPage() {
     .filter((s): s is Card => Boolean(s));
 
   return (
-    <div>
+    <div className="min-h-full bg-bg">
       <Header />
-      <main className="mx-auto max-w-6xl px-4 pb-16 pt-8 md:pb-22 md:pt-12">
+      <main className="mx-auto max-w-[92rem] px-5 pb-[4.5rem] pt-10 md:px-10 md:pb-[5.75rem] md:pt-12">
         <Reveal>
-          <section className="relative mb-11 overflow-hidden rounded-[2rem] border border-black/[0.06] bg-gradient-to-br from-bg via-surface to-brand/12 px-6 py-9 shadow-soft md:mb-14 md:px-9 md:py-11">
-            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.22em] text-ink/40">
+          <section className={pageHeroBandClass}>
+            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.26em] text-ink/45">
               (04) Полный каталог
             </p>
-            <h1 className="mt-3 max-w-[18ch] font-display text-[clamp(1.875rem,1.2rem+2.35vw,2.75rem)] font-semibold leading-[1.05] tracking-[-0.032em] text-ink">
+            <h1 className="mt-[0.8rem] max-w-[22ch] text-[clamp(1.975rem,1.2rem+2.95vw,2.95rem)] font-extrabold leading-[0.98] tracking-[-0.055em] text-ink md:leading-[0.96]">
               Услуги
             </h1>
-            <p className="mt-4 max-w-xl text-[0.95rem] leading-relaxed text-ink/72">
+            <p className="mt-4 max-w-xl text-[0.9775rem] leading-relaxed text-ink/68 md:text-[1.03rem]">
               Выберите услугу или оставьте заявку — мы уточним детали и рассчитаем стоимость.
             </p>
-            <p className="mt-5 text-[0.75rem] font-medium uppercase tracking-[0.14em] text-ink/45">
+            <p className="mt-[0.95rem] text-[0.7rem] font-bold uppercase tracking-[0.22em] text-ink/38">
               В каталоге: {list.length} услуг
             </p>
           </section>
         </Reveal>
 
-        <ServiceListingGrid
-          items={list.map(({ href, title, description, coverUrl }) => ({
-            href,
-            title,
-            description,
-            coverUrl,
-          }))}
-        />
+        <div className="mt-14">
+          <ServiceListingGrid
+            items={list.map(({ href, title, description, coverUrl }) => ({
+              href,
+              title,
+              description,
+              coverUrl,
+            }))}
+          />
+        </div>
       </main>
       <Footer />
     </div>

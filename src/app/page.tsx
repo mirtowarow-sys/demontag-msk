@@ -1,18 +1,19 @@
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { HeroSection } from "@/components/sections/HeroSection";
-import { SocialProofSection } from "@/components/sections/SocialProofSection";
-import { FeaturesSection } from "@/components/sections/FeaturesSection";
-import { ServicesSection } from "@/components/sections/ServicesSection";
+import type { Metadata } from "next";
+
 import { CasesSection } from "@/components/sections/CasesSection";
-import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { CtaSection } from "@/components/sections/CtaSection";
 import { FaqSection } from "@/components/sections/FaqSection";
-import type { Metadata } from "next";
-import { pages } from "@/content/pages";
-import { SITE_NAME, getSiteUrl } from "@/lib/site";
+import { FeaturesSection } from "@/components/sections/FeaturesSection";
+import { HeroSection } from "@/components/sections/HeroSection";
+import { ServicesSection } from "@/components/sections/ServicesSection";
+import { SocialProofSection } from "@/components/sections/SocialProofSection";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
 import { JsonLd } from "@/components/JsonLd";
 import { contacts } from "@/content/contacts";
+import { pages } from "@/content/pages";
+import { getSiteUrl, SITE_NAME } from "@/lib/site";
 
 export function generateMetadata(): Metadata {
   const siteUrl = getSiteUrl();
@@ -52,9 +53,9 @@ export default function HomePage() {
   };
 
   return (
-    <div>
+    <div className="min-h-full bg-bg">
       <Header />
-      <main className="mx-auto max-w-6xl px-4 pb-16 pt-6 md:pb-20 md:pt-10">
+      <main className="mx-auto flex max-w-[92rem] flex-col gap-6 px-5 pb-[4.75rem] pt-10 md:gap-10 md:px-10 md:pb-24 md:pt-11">
         <JsonLd data={organizationLd} />
         <HeroSection />
         <SocialProofSection />
