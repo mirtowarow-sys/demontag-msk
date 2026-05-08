@@ -26,6 +26,7 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "static.tildacdn.com" },
       { protocol: "https", hostname: "tildacdn.com" },
       { protocol: "https", hostname: "optim.tildacdn.com" },
+      { protocol: "https", hostname: "thb.tildacdn.com" },
     ],
   },
 };

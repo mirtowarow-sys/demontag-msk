@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { pages } from "@/content/pages";
 import { canonicalServiceSlugs } from "@/content/canonical";
+import type { CanonicalServiceSlug } from "@/content/canonical";
+import { pages } from "@/content/pages";
+import { serviceCoverUrls } from "@/content/serviceCoverUrls";
 import { services } from "@/content/services";
 
 export function generateMetadata(): Metadata {
@@ -17,7 +20,13 @@ export function generateMetadata(): Metadata {
 }
 
 export default function ServicesIndexPage() {
-  type Card = { href: string; title: string; description?: string };
+  type Card = {
+    slug: CanonicalServiceSlug;
+    href: string;
+    title: string;
+    description?: string;
+    coverUrl: string;
+  };
 
   const list = canonicalServiceSlugs
     .map((slug): Card | null => {
@@ -26,9 +35,11 @@ export default function ServicesIndexPage() {
       const svc = services.find((s) => s.id === slug);
       if (!p && !svc) return null;
       return {
+        slug,
         href,
         title: p?.title ?? svc?.title ?? href,
         description: p?.description ?? svc?.description ?? undefined,
+        coverUrl: serviceCoverUrls[slug],
       };
     })
     .filter((s): s is Card => Boolean(s));
@@ -41,17 +52,30 @@ export default function ServicesIndexPage() {
         <p className="mt-3 text-sm text-ink/70">
           Выберите услугу или оставьте заявку — мы уточним детали и рассчитаем стоимость.
         </p>
-
-        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <p className="mt-2 text-xs text-ink/50">В каталоге: {list.length} услуг</p>
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {list.map((s) => (
             <Link
               key={s.href}
               href={s.href}
-              className="rounded-3xl border border-border bg-bg p-5 hover:bg-surface"
+              className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-bg transition hover:border-ink/20 hover:bg-surface"
             >
-              <p className="text-base font-semibold">{s.title}</p>
-              {s.description ? <p className="mt-2 text-sm text-ink/70">{s.description}</p> : null}
-              <p className="mt-4 text-sm font-medium text-ink/80">Подробнее →</p>
+              <div className="relative aspect-[5/4] bg-surface sm:aspect-[16/11]">
+                <Image
+                  src={s.coverUrl}
+                  alt=""
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition duration-300 group-hover:scale-[1.03]"
+                />
+              </div>
+              <div className="flex flex-col p-5">
+                <p className="line-clamp-2 text-base font-semibold">{s.title}</p>
+                {s.description ? (
+                  <p className="mt-2 line-clamp-3 text-sm text-ink/70">{s.description}</p>
+                ) : null}
+                <p className="mt-4 text-sm font-medium text-ink/80">Подробнее →</p>
+              </div>
             </Link>
           ))}
         </div>
