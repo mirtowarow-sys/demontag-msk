@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { pages } from "@/content/pages";
+import type { PageDef } from "@/content/pages";
+import { canonicalArticleSlugs } from "@/content/canonical";
 
 export function generateMetadata(): Metadata {
   const p = pages.find((x) => x.url === "/articles");
@@ -15,7 +17,9 @@ export function generateMetadata(): Metadata {
 }
 
 export default function ArticlesIndexPage() {
-  const list = pages.filter((p) => p.url.startsWith("/articles/"));
+  const list = canonicalArticleSlugs
+    .map((slug) => pages.find((p) => p.url === `/articles/${slug}`))
+    .filter((p): p is PageDef => Boolean(p));
 
   return (
     <div>

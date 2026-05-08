@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -10,6 +10,7 @@ import { tildaBodies } from "@/content/tildaBodies";
 import { TildaBody } from "@/components/TildaBody";
 import { JsonLd } from "@/components/JsonLd";
 import { getSiteUrl, SITE_NAME } from "@/lib/site";
+import { canonicalArticleSlugs } from "@/content/canonical";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -32,6 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ArticlePage({ params }: PageProps) {
   const { slug } = await params;
+  if (!canonicalArticleSlugs.includes(slug as never)) redirect("/articles");
   const url = `/articles/${slug}`;
   const p = pages.find((x) => x.url === url);
   if (!p) notFound();

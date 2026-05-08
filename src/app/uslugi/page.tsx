@@ -3,8 +3,9 @@ import Link from "next/link";
 
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { services } from "@/content/services";
 import { pages } from "@/content/pages";
+import type { PageDef } from "@/content/pages";
+import { canonicalServiceSlugs } from "@/content/canonical";
 
 export function generateMetadata(): Metadata {
   const p = pages.find((x) => x.url === "/uslugi");
@@ -16,6 +17,10 @@ export function generateMetadata(): Metadata {
 }
 
 export default function ServicesIndexPage() {
+  const list = canonicalServiceSlugs
+    .map((slug) => pages.find((p) => p.url === `/uslugi/${slug}`))
+    .filter((p): p is PageDef => Boolean(p));
+
   return (
     <div>
       <Header />
@@ -26,13 +31,13 @@ export default function ServicesIndexPage() {
         </p>
 
         <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((s) => (
+          {list.map((s) => (
             <Link
-              key={s.id}
-              href={`/uslugi/${s.id}`}
+              key={s.url}
+              href={s.url}
               className="rounded-3xl border border-border bg-bg p-5 hover:bg-surface"
             >
-              <p className="text-base font-semibold">{s.title}</p>
+              <p className="text-base font-semibold">{s.title ?? s.url}</p>
               {s.description ? <p className="mt-2 text-sm text-ink/70">{s.description}</p> : null}
               <p className="mt-4 text-sm font-medium text-ink/80">Подробнее →</p>
             </Link>

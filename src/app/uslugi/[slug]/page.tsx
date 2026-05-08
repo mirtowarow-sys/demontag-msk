@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -12,6 +12,7 @@ import { tildaBodies } from "@/content/tildaBodies";
 import { TildaBody } from "@/components/TildaBody";
 import { JsonLd } from "@/components/JsonLd";
 import { getSiteUrl, SITE_NAME } from "@/lib/site";
+import { canonicalServiceSlugs } from "@/content/canonical";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -37,6 +38,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ServicePage({ params }: PageProps) {
   const { slug } = await params;
+  if (!canonicalServiceSlugs.includes(slug as never)) redirect("/uslugi");
   const svc = services.find((s) => s.id === slug);
   const url = `/uslugi/${slug}`;
   const p = pages.find((x) => x.url === url);

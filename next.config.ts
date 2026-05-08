@@ -17,7 +17,16 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
-    remotePatterns: [],
+    remotePatterns: [
+      // Current production domain
+      { protocol: "https", hostname: "demontagmsk.ru" },
+      { protocol: "https", hostname: "www.demontagmsk.ru" },
+
+      // Typical Tilda CDNs (for migrated images/icons)
+      { protocol: "https", hostname: "static.tildacdn.com" },
+      { protocol: "https", hostname: "tildacdn.com" },
+      { protocol: "https", hostname: "optim.tildacdn.com" },
+    ],
   },
 };
 
