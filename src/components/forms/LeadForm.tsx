@@ -44,8 +44,12 @@ export function LeadForm({
   const onSubmit = handleSubmit(async (values) => {
     setServerError(null);
     setServerSuccess(null);
+    if (!onSubmitLead) {
+      setServerError("Форма временно недоступна. Пожалуйста, позвоните или напишите нам.");
+      return;
+    }
     try {
-      await onSubmitLead?.({
+      await onSubmitLead({
         name: values.name || undefined,
         phone: values.phone,
         service: values.service || presetService || undefined,
