@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
+import { ArticlesListingGrid } from "@/components/articles/ArticlesListingGrid";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { Reveal } from "@/components/motion/Reveal";
+import { canonicalArticleSlugs } from "@/content/canonical";
 import { pages } from "@/content/pages";
 import type { PageDef } from "@/content/pages";
-import { canonicalArticleSlugs } from "@/content/canonical";
 
 export function generateMetadata(): Metadata {
   const p = pages.find((x) => x.url === "/articles");
@@ -24,23 +25,28 @@ export default function ArticlesIndexPage() {
   return (
     <div>
       <Header />
-      <main className="mx-auto max-w-6xl px-4 py-10">
-        <h1 className="text-balance text-3xl font-semibold tracking-tight md:text-4xl">Статьи</h1>
-        <p className="mt-3 text-sm text-ink/70">Подборка материалов и ответов на частые вопросы.</p>
+      <main className="mx-auto max-w-6xl px-4 pb-16 pt-8 md:pb-22 md:pt-12">
+        <Reveal>
+          <section className="relative mb-11 overflow-hidden rounded-[2rem] border border-black/[0.06] bg-gradient-to-br from-bg via-surface to-brand/12 px-6 py-9 shadow-soft md:mb-14 md:px-9 md:py-11">
+            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.22em] text-ink/40">
+              (06) Полезное
+            </p>
+            <h1 className="mt-3 font-display text-[clamp(1.875rem,1.2rem+2.35vw,2.75rem)] font-semibold leading-[1.05] tracking-[-0.032em] text-ink">
+              Статьи
+            </h1>
+            <p className="mt-4 max-w-xl text-[0.95rem] leading-relaxed text-ink/72">
+              Подборка материалов и ответов на частые вопросы.
+            </p>
+          </section>
+        </Reveal>
 
-        <div className="mt-8 grid gap-3 md:grid-cols-2">
-          {list.map((a) => (
-            <Link
-              key={a.url}
-              href={a.url}
-              className="rounded-3xl border border-border bg-bg p-6 hover:bg-surface"
-            >
-              <p className="text-base font-semibold">{a.title ?? a.url}</p>
-              {a.description ? <p className="mt-2 text-sm text-ink/70">{a.description}</p> : null}
-              <p className="mt-4 text-sm font-medium text-ink/80">Читать →</p>
-            </Link>
-          ))}
-        </div>
+        <ArticlesListingGrid
+          items={list.map((a) => ({
+            href: a.url,
+            title: a.title ?? a.url,
+            description: a.description,
+          }))}
+        />
       </main>
       <Footer />
     </div>

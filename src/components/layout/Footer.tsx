@@ -9,7 +9,7 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-10">
         <div className="grid gap-8 md:grid-cols-3">
           <div>
-            <p className="text-sm font-semibold">Демонтаж МСК</p>
+            <p className="font-display text-base font-semibold tracking-[-0.02em]">Демонтаж МСК</p>
             <p className="mt-2 text-sm text-ink/70">Работаем в {contacts.city ?? "Москве и МО"}</p>
           </div>
 

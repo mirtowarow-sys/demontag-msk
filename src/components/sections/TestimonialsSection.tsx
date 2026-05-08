@@ -1,24 +1,33 @@
 import { testimonials } from "@/content/testimonials";
+import { SectionHeading } from "@/components/layout/SectionHeading";
+import { mutedCardClass } from "@/lib/card-styles";
+import { Reveal } from "@/components/motion/Reveal";
 
 export function TestimonialsSection() {
   return (
-    <section id="reviews" className="py-10">
-      <div className="flex items-end justify-between gap-4">
-        <div>
-          <h2 className="text-2xl font-semibold tracking-tight">Отзывы</h2>
-          <p className="mt-2 text-sm text-ink/70">Что говорят клиенты о нашей работе.</p>
-        </div>
-      </div>
+    <section id="reviews" className="scroll-mt-28 py-14 md:py-16">
+      <Reveal>
+        <SectionHeading
+          tag="(06) Отзывы"
+          title="Что говорят клиенты"
+          description="Отзывы о нашей работе — без выдумки, только живой опыт."
+        />
+      </Reveal>
 
-      <div className="mt-6 grid gap-3 md:grid-cols-3">
-        {testimonials.map((t) => (
-          <figure key={`${t.name}:${t.text.slice(0, 16)}`} className="rounded-3xl border border-border bg-bg p-5">
-            <blockquote className="text-sm text-ink/80">“{t.text}”</blockquote>
-            <figcaption className="mt-4 text-sm font-semibold">{t.name}</figcaption>
-          </figure>
+      <div className="mt-12 grid gap-6 md:grid-cols-3">
+        {testimonials.map((t, i) => (
+          <Reveal key={`${t.name}:${t.text.slice(0, 16)}`} delay={Math.min(i * 0.08, 0.24)}>
+            <figure className={`flex h-full flex-col px-7 py-[1.55rem] ${mutedCardClass}`}>
+              <blockquote className="text-[0.9rem] leading-relaxed text-ink/76">
+                «{t.text}»
+              </blockquote>
+              <figcaption className="mt-6 flex items-center gap-3 text-[0.875rem] font-semibold">
+                {t.name}
+              </figcaption>
+            </figure>
+          </Reveal>
         ))}
       </div>
     </section>
   );
 }
-

@@ -1,41 +1,51 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colors (from Tilda audit) */
+  --font-sans: var(--font-sans-humanist), ui-sans-serif, system-ui, sans-serif;
+
+  /* Colors — жёлтый бренда СОХРАНЯЕМ для демонтажа */
   --color-brand: #ffcb2e;
   --color-brand-strong: #f2ce00;
-  --color-ink: #292929;
-  --color-ink-2: #1c1c1c;
-  --color-bg: #ffffff;
-  --color-surface: #f5f5f5;
-  --color-border: #c9c9c9;
-  --color-muted: #a8a8a8;
+  --color-ink: #1c2430;
+  --color-ink-2: #121820;
+  --color-bg: #fafbfb;
+  --color-surface: #f3f6f8;
+  --color-border: #dfe5ea;
+  --color-muted: #8896a8;
 
-  /* Radius / shadow (seen in forms/buttons) */
   --radius-pill: 9999px;
   --radius-md: 16px;
   --radius-lg: 30px;
 
-  --shadow-soft: 0px 0px 30px rgba(0, 0, 0, 0.3);
-  --shadow-strong: 0px 0px 90px rgba(0, 0, 0, 0.4);
+  --shadow-soft: 0 8px 40px rgba(28, 36, 48, 0.08);
+  --shadow-strong: 0 24px 64px rgba(28, 36, 48, 0.12);
 }
 
-html,
-body {
-  height: 100%;
-}
+@layer base {
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display-serif), "Times New Roman", serif;
+    font-variant-numeric: lining-nums;
+  }
 
-html {
-  scroll-behavior: smooth;
-}
+  html,
+  body {
+    height: 100%;
+  }
 
-body {
-  color: var(--color-ink);
-  background: var(--color-bg);
-}
+  html {
+    scroll-behavior: smooth;
+  }
 
-::selection {
-  background: color-mix(in oklab, var(--color-brand) 60%, white);
-  color: black;
-}
+  body {
+    color: var(--color-ink);
+    background-color: var(--color-bg);
+  }
 
+  ::selection {
+    background: color-mix(in oklab, var(--color-brand) 55%, white);
+    color: #111;
+  }
+}

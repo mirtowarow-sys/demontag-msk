@@ -23,9 +23,9 @@ export function Header() {
   const [leadOpen, setLeadOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-bg/80 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
-        <Link href="/" className="font-semibold tracking-tight">
+    <header className="sticky top-0 z-40 border-b border-black/[0.06] bg-bg/86 shadow-[0_10px_44px_-38px_rgba(28,36,48,0.45)] backdrop-blur-md">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3.5">
+        <Link href="/" className="font-display text-lg font-semibold tracking-[-0.02em]">
           Демонтаж МСК
         </Link>
 

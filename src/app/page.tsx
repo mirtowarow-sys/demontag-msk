@@ -54,7 +54,7 @@ export default function HomePage() {
   return (
     <div>
       <Header />
-      <main className="mx-auto max-w-6xl px-4 py-10">
+      <main className="mx-auto max-w-6xl px-4 pb-16 pt-6 md:pb-20 md:pt-10">
         <JsonLd data={organizationLd} />
         <HeroSection />
         <SocialProofSection />

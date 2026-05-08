@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
 
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { ServiceListingGrid } from "@/components/uslugi/ServiceListingGrid";
 import { canonicalServiceSlugs } from "@/content/canonical";
 import type { CanonicalServiceSlug } from "@/content/canonical";
 import { pages } from "@/content/pages";
 import { serviceCoverUrls } from "@/content/serviceCoverUrls";
 import { services } from "@/content/services";
+import { Reveal } from "@/components/motion/Reveal";
 
 export function generateMetadata(): Metadata {
   const p = pages.find((x) => x.url === "/uslugi");
@@ -47,38 +47,32 @@ export default function ServicesIndexPage() {
   return (
     <div>
       <Header />
-      <main className="mx-auto max-w-6xl px-4 py-10">
-        <h1 className="text-balance text-3xl font-semibold tracking-tight md:text-4xl">Услуги</h1>
-        <p className="mt-3 text-sm text-ink/70">
-          Выберите услугу или оставьте заявку — мы уточним детали и рассчитаем стоимость.
-        </p>
-        <p className="mt-2 text-xs text-ink/50">В каталоге: {list.length} услуг</p>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {list.map((s) => (
-            <Link
-              key={s.href}
-              href={s.href}
-              className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-bg transition hover:border-ink/20 hover:bg-surface"
-            >
-              <div className="relative aspect-[5/4] bg-surface sm:aspect-[16/11]">
-                <Image
-                  src={s.coverUrl}
-                  alt=""
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover transition duration-300 group-hover:scale-[1.03]"
-                />
-              </div>
-              <div className="flex flex-col p-5">
-                <p className="line-clamp-2 text-base font-semibold">{s.title}</p>
-                {s.description ? (
-                  <p className="mt-2 line-clamp-3 text-sm text-ink/70">{s.description}</p>
-                ) : null}
-                <p className="mt-4 text-sm font-medium text-ink/80">Подробнее →</p>
-              </div>
-            </Link>
-          ))}
-        </div>
+      <main className="mx-auto max-w-6xl px-4 pb-16 pt-8 md:pb-22 md:pt-12">
+        <Reveal>
+          <section className="relative mb-11 overflow-hidden rounded-[2rem] border border-black/[0.06] bg-gradient-to-br from-bg via-surface to-brand/12 px-6 py-9 shadow-soft md:mb-14 md:px-9 md:py-11">
+            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.22em] text-ink/40">
+              (04) Полный каталог
+            </p>
+            <h1 className="mt-3 max-w-[18ch] font-display text-[clamp(1.875rem,1.2rem+2.35vw,2.75rem)] font-semibold leading-[1.05] tracking-[-0.032em] text-ink">
+              Услуги
+            </h1>
+            <p className="mt-4 max-w-xl text-[0.95rem] leading-relaxed text-ink/72">
+              Выберите услугу или оставьте заявку — мы уточним детали и рассчитаем стоимость.
+            </p>
+            <p className="mt-5 text-[0.75rem] font-medium uppercase tracking-[0.14em] text-ink/45">
+              В каталоге: {list.length} услуг
+            </p>
+          </section>
+        </Reveal>
+
+        <ServiceListingGrid
+          items={list.map(({ href, title, description, coverUrl }) => ({
+            href,
+            title,
+            description,
+            coverUrl,
+          }))}
+        />
       </main>
       <Footer />
     </div>
