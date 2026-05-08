@@ -11,7 +11,17 @@ export const services: ServiceItem[] = [
   { id: "demontazh-santehkabiny", title: "Демонтаж сантехкабины" },
   { id: "demontazh-doma", title: "Демонтаж дома" },
   { id: "demontazh-metallokonstrukcij", title: "Демонтаж металлоконструкций" },
-  { id: "vyvoz-musora-posle-demontazha", title: "Вывоз строительного мусора после демонтажа" },
+  {
+    id: "demontazh-konstrukciy",
+    title: "Демонтаж бетонных и железобетонных конструкций",
+    description:
+      "Демонтаж стен, перекрытий и других бетонных конструкций с вывозом мусора. Оценка объекта и смета под ключ.",
+  },
+  {
+    id: "vyvoz-musora-posle-demontazha",
+    title: "Вывоз строительного мусора после демонтажа",
+    description: "Организуем вывоз и утилизацию строительного мусора после демонтажных работ.",
+  },
   { id: "almaznaya-rezka", title: "Алмазная резка" },
   { id: "demontazh-sten", title: "Демонтаж стен и перегородок" },
 ];
