@@ -24,6 +24,30 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-[#cddcea]/90 bg-[#fbfdff]/88 shadow-[0_18px_50px_-40px_rgba(12,40,76,0.45)] backdrop-blur-xl backdrop-saturate-150">
+      <div className="hidden border-b border-white/10 bg-ink/95 text-white/86 md:block">
+        <div className="mx-auto flex max-w-[92rem] items-center justify-between px-10 py-2">
+          <div className="flex items-center gap-4">
+            <a
+              className="text-[0.8125rem] font-bold tabular-nums tracking-tight text-white/90 hover:text-white"
+              href={`tel:${contacts.phoneE164}`}
+              onClick={() => reachGoal("phone_click", { placement: "topbar" })}
+            >
+              {contacts.phoneDisplay}
+            </a>
+            <a
+              className="text-[0.8125rem] font-semibold text-white/80 hover:text-white"
+              href={`mailto:${contacts.email}`}
+            >
+              {contacts.email}
+            </a>
+          </div>
+
+          <div className="text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-white/55">
+            Москва и МО • Выезд и смета
+          </div>
+        </div>
+      </div>
+
       <div className="mx-auto flex max-w-[92rem] items-center justify-between gap-4 px-5 py-[0.9rem] md:px-10">
         <Link
           href="/"
