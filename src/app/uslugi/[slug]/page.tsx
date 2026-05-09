@@ -14,6 +14,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { getSiteUrl, SITE_NAME } from "@/lib/site";
 import { canonicalServiceSlugs } from "@/content/canonical";
 import { mutedCardClass } from "@/lib/card-styles";
+import { manualServiceBodies } from "@/content/manualBodies";
 
 /** Канонический URL на сайте; в экспорте Тильды тот же текст лежит под другим slug. */
 const TILDA_BODY_URL_BY_SLUG: Record<string, string> = {
@@ -49,7 +50,10 @@ export default async function ServicePage({ params }: PageProps) {
   const url = `/uslugi/${slug}`;
   const p = pages.find((x) => x.url === url);
   const bodySourceUrl = TILDA_BODY_URL_BY_SLUG[slug];
-  const body = tildaBodies[url] ?? (bodySourceUrl ? tildaBodies[bodySourceUrl] : undefined);
+  const body =
+    tildaBodies[url] ??
+    (bodySourceUrl ? tildaBodies[bodySourceUrl] : undefined) ??
+    manualServiceBodies[slug];
   const siteUrl = getSiteUrl();
   const pageUrl = `${siteUrl}${url}`;
   const title = svc?.title ?? p?.title ?? "Услуга";

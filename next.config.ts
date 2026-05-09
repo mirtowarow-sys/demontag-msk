@@ -14,6 +14,34 @@ const nextConfig: NextConfig = {
       { source: "/otzyvy", destination: "/#reviews", permanent: true },
       { source: "/portfolio", destination: "/#cases", permanent: true },
       { source: "/price", destination: "/#cta", permanent: true },
+
+      // Legacy catalog/service URLs (without /uslugi prefix on old site)
+      { source: "/demontazh-doma", destination: "/uslugi/demontazh-doma", permanent: true },
+      {
+        source: "/demontazh-konstrukczij",
+        destination: "/uslugi/demontazh-konstrukciy",
+        permanent: true,
+      },
+      {
+        source: "/vyvoz-stroitelnogo-musora",
+        destination: "/uslugi/vyvoz-musora-posle-demontazha",
+        permanent: true,
+      },
+
+      // Legacy “works/portfolio” variations
+      { source: "/nashi-raboty", destination: "/#cases", permanent: true },
+      {
+        source: "/nashi-raboty/demontazh-betona",
+        destination: "/uslugi/demontaj-betona",
+        permanent: true,
+      },
+
+      // Legacy single page
+      {
+        source: "/snos-avariynogo-zdaniya",
+        destination: "/uslugi/demontazh-avariynykh-domov",
+        permanent: true,
+      },
     ];
   },
   images: {
