@@ -61,7 +61,7 @@ export const serviceCoverUrls: Record<CanonicalServiceSlug, string> = {
     "https://static.tildacdn.com/tild3163-6462-4865-b034-386662373163/_2025-07-09_12520160.png",
   "snos-zdaniy":
     "https://static.tildacdn.com/tild3437-3364-4830-b437-636663313234/fotor_2023-4-19_17_3.jpg",
-  /** На живой странице нет jpeg/png в первых мета — универсальное превью бренда. */
+  /** Берём og:image со старой страницы `/vyvoz-stroitelnogo-musora`. */
   "vyvoz-musora-posle-demontazha":
-    "https://static.tildacdn.com/tild3031-3365-4362-b165-613163333631/2023-03-30_17-48-22-.png",
+    "https://thb.tildacdn.com/tild3832-6262-4661-b263-616266636430/-/resize/504x/i_1.jpg",
 };

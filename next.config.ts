@@ -42,6 +42,58 @@ const nextConfig: NextConfig = {
         destination: "/uslugi/demontazh-avariynykh-domov",
         permanent: true,
       },
+
+      // Non-canonical /uslugi/* pages present in export → consolidate to /uslugi
+      { source: "/uslugi/demontaj-domov-iz-penoblokov", destination: "/uslugi", permanent: true },
+      { source: "/uslugi/demontaj-stariyfond", destination: "/uslugi", permanent: true },
+      { source: "/uslugi/demontazh-avariynykh-domov", destination: "/uslugi", permanent: true },
+      { source: "/uslugi/demontazh-ekskavatorom", destination: "/uslugi", permanent: true },
+      { source: "/uslugi/demontazh-elektriki", destination: "/uslugi", permanent: true },
+      { source: "/uslugi/demontazh-fundamenta-betona", destination: "/uslugi", permanent: true },
+      { source: "/uslugi/demontazh-kirpichnyh-zdaniy", destination: "/uslugi", permanent: true },
+      { source: "/uslugi/demontazh-obektov", destination: "/uslugi", permanent: true },
+      {
+        source: "/uslugi/demontazh-ograzhdayushhikh-konstrukczij-razbor-zabora",
+        destination: "/uslugi",
+        permanent: true,
+      },
+      { source: "/uslugi/demontazh-peregorodok", destination: "/uslugi", permanent: true },
+      { source: "/uslugi/demontazh-plit-perekrytiya", destination: "/uslugi", permanent: true },
+      {
+        source: "/uslugi/demontazh-proizvodstvennogo-oborudovaniya",
+        destination: "/uslugi",
+        permanent: true,
+      },
+      {
+        source: "/uslugi/demontazh-proizvodstvennykh-zdanij",
+        destination: "/uslugi",
+        permanent: true,
+      },
+      {
+        source: "/uslugi/demontazh-razbor-starykh-postroek-sooruzhenij",
+        destination: "/uslugi",
+        permanent: true,
+      },
+      { source: "/uslugi/demontazh-sklada-snos-angara", destination: "/uslugi", permanent: true },
+      { source: "/uslugi/demontazh-sudov-i-vagonov", destination: "/uslugi", permanent: true },
+      { source: "/uslugi/demontazh-zavodov-i-cehov", destination: "/uslugi", permanent: true },
+      { source: "/uslugi/rasshirenie-proemov", destination: "/uslugi", permanent: true },
+      {
+        source: "/uslugi/razborvoinskikhchastej-demontazhshakht",
+        destination: "/uslugi",
+        permanent: true,
+      },
+      { source: "/uslugi/snos-chastnyh-domov", destination: "/uslugi", permanent: true },
+      { source: "/uslugi/snos-i-demontazhelevatora", destination: "/uslugi", permanent: true },
+      { source: "/uslugi/snoskorovnikov-demontazhfermy", destination: "/uslugi", permanent: true },
+      { source: "/uslugi/usilenie-proemov", destination: "/uslugi", permanent: true },
+
+      // Important alias: exported page keeps text, but canonical is different slug
+      {
+        source: "/uslugi/demontazh-betonnykh-konstruktsij",
+        destination: "/uslugi/demontazh-konstrukciy",
+        permanent: true,
+      },
     ];
   },
   images: {
