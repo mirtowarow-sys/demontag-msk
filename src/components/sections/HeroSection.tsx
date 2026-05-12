@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { TrackedLink } from "@/components/TrackedLink";
 import { heroShowcaseBandClass } from "@/lib/marketing-surfaces";
+import { AnimatedExplodingImage } from "@/components/ui/AnimatedExplodingImage";
+import { heroMedia } from "@/content/heroMedia";
 
 export function HeroSection() {
   const reduceMotion = useReducedMotion();
@@ -61,6 +63,19 @@ export function HeroSection() {
             </motion.div>
           ) : null}
         </motion.div>
+
+        <div className="hidden md:block md:w-[28rem] lg:w-[32rem]">
+          <div className="relative ml-auto aspect-[4/5] w-full">
+            <AnimatedExplodingImage
+              src={heroMedia.imageUrl}
+              alt=""
+              className="absolute inset-0 cursor-pointer rounded-[2rem] border border-[#d9e6f5] bg-white/70 p-6 shadow-[0_28px_90px_-60px_rgba(12,40,76,0.35)]"
+            />
+          </div>
+          <p className="mt-3 text-[0.72rem] font-bold uppercase tracking-[0.22em] text-ink/35">
+            Наведите мышью — поворот • Клик — взрыв
+          </p>
+        </div>
 
         <motion.div
           className="flex w-full shrink-0 flex-col gap-3.5 sm:max-w-sm sm:flex-row md:w-auto md:flex-col lg:gap-4"
